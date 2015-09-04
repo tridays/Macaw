@@ -13,6 +13,8 @@ require: {
 }
 ```
 
+**Because of modification, you need to download from my github to get new features.**
+
 ### Examples
 
 First, `use` the Macaw namespace:
@@ -64,6 +66,27 @@ Macaw::error(function() {
 ```
 
 If you don't specify an error callback, Macaw will just echo `404`.
+
+### Modification
+
+1. Replace `$_SERVER['PHP_SELF']` with `$_SERVER['SCRIPT_NAME']` to fix a problem when using PATH_INFO.
+2. Added global namespace for controllers.
+3. Deleted any code about `halt`. (for useless)
+
+here are some examples.
+
+
+```php
+// IndexController.php
+namespace app\controllers;
+class IndexController {
+    public function index() {}
+}
+
+// route.php
+Macaw::useNamespace('app\controllers');
+Macaw::get('IndexController@index');
+```
 
 <hr>
 
